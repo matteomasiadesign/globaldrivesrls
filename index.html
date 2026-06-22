@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>Global Drive — Auto selezionate a Porto Torres</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light only;
+    --white:#ffffff; --off-white:#F5F7FB; --ink:#14181F;
+    --blue:#1450D6; --blue-dark:#0B2E66; --blue-light:#EAF0FD;
+    --steel:#6B7280; --border:#E6E8EE;
+    --radius-lg:20px; --radius:12px; --radius-pill:999px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ font-family:'Inter',sans-serif; background:var(--white); color:var(--ink); -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.02em; }
+  a{ color:inherit; text-decoration:none; } img{ max-width:100%; display:block; }
+  button{ font-family:inherit; cursor:pointer; border:none; }
+
+  /* NAVBAR */
+  .navbar{ position:sticky; top:0; z-index:200; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+  .navbar-inner{ max-width:1200px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; }
+  .logo{ display:flex; align-items:center; gap:8px; }
+  .logo .dot{ width:9px; height:9px; background:var(--blue); border-radius:50%; }
+  .logo span{ font-family:'Oswald'; font-size:18px; font-weight:600; letter-spacing:0.04em; }
+  .nav-links{ display:flex; gap:32px; list-style:none; }
+  .nav-links a{ color:var(--steel); font-size:13px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding-bottom:4px; border-bottom:2px solid transparent; transition:all .2s; }
+  .nav-links a:hover{ color:var(--blue); border-color:var(--blue); }
+  .hamburger{ display:none; flex-direction:column; gap:5px; background:transparent; padding:6px; }
+  .hamburger span{ width:22px; height:2px; background:var(--ink); display:block; border-radius:2px; }
+  .mobile-menu{ position:fixed; inset:0; background:var(--white); z-index:300; display:flex; flex-direction:column; padding:24px 28px; transform:translateX(100%); transition:transform .3s ease; }
+  .mobile-menu.open{ transform:translateX(0); }
+  .mobile-menu-top{ display:flex; justify-content:flex-end; }
+  .mobile-menu-top button{ background:transparent; color:var(--ink); font-size:26px; }
+  .mobile-menu ul{ list-style:none; margin-top:60px; display:flex; flex-direction:column; gap:28px; }
+  .mobile-menu a{ font-family:'Oswald'; font-size:28px; text-transform:uppercase; }
+  .mobile-menu a:hover{ color:var(--blue); }
+  @media(max-width:880px){ .nav-links{ display:none; } .hamburger{ display:flex; } }
+
+  /* HERO */
+  .hero{ background:var(--off-white); position:relative; overflow:hidden; padding:90px 20px 100px; }
+  .hero::before{ content:"GD"; position:absolute; right:0; top:50%; transform:translateY(-50%); font-family:'Oswald'; font-weight:700; font-size:280px; color:rgba(20,80,214,0.05); pointer-events:none; line-height:1; }
+  .hero-inner{ max-width:1200px; margin:0 auto; position:relative; z-index:2; }
+  .eyebrow{ font-family:'JetBrains Mono'; font-size:12px; color:var(--blue); letter-spacing:0.12em; text-transform:uppercase; display:flex; align-items:center; gap:8px; margin-bottom:18px; }
+  .eyebrow::before{ content:""; width:24px; height:1px; background:var(--blue); }
+  .hero h1{ font-size:clamp(36px,6vw,64px); line-height:1.05; max-width:680px; font-weight:700; }
+  .hero h1 .accent{ color:var(--blue); }
+  .hero p{ color:var(--steel); max-width:480px; margin-top:20px; font-size:16px; line-height:1.6; }
+  .hero-ctas{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+  .btn{ padding:14px 26px; border-radius:var(--radius-pill); font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; display:inline-flex; align-items:center; gap:8px; transition:all .2s; }
+  .btn-primary{ background:var(--blue); color:#fff; } .btn-primary:hover{ background:var(--blue-dark); }
+  .btn-outline{ border:1.5px solid var(--border); color:var(--ink); background:#fff; } .btn-outline:hover{ border-color:var(--blue); color:var(--blue); }
+  .btn-whatsapp{ background:#1f9e57; color:#fff; } .btn-whatsapp:hover{ background:#178047; }
+
+  section{ padding:80px 20px; }
+  .section-inner{ max-width:1200px; margin:0 auto; }
+  .section-head{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:42px; flex-wrap:wrap; gap:16px; }
+  .section-head h2{ font-size:clamp(26px,4vw,36px); font-weight:600; }
+
+  /* CARD */
+  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media(max-width:900px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:600px){ .grid{ grid-template-columns:1fr; } }
+  .car-card{ background:#fff; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border); cursor:pointer; transition:all .2s; display:flex; flex-direction:column; }
+  .car-card:hover{ border-color:var(--blue); transform:translateY(-3px); box-shadow:0 16px 32px rgba(20,80,214,0.12); }
+  .car-thumb{ height:180px; position:relative; display:flex; align-items:center; justify-content:center; margin:8px; border-radius:14px; overflow:hidden; background:var(--blue-light); }
+  .car-thumb img{ width:100%; height:100%; object-fit:cover; }
+  .car-thumb .ph{ width:74px; opacity:.85; }
+  .car-body{ padding:10px 18px 20px; display:flex; flex-direction:column; gap:10px; }
+  .car-title{ font-family:'Oswald'; font-size:18px; font-weight:600; }
+  .car-sub{ color:var(--steel); font-size:13px; }
+  .plate{ display:inline-flex; align-items:center; gap:8px; align-self:flex-start; background:var(--blue-light); border:1.5px solid var(--blue); border-radius:var(--radius-pill); padding:6px 12px 6px 8px; }
+  .plate-strip{ width:5px; align-self:stretch; background:var(--blue); border-radius:var(--radius-pill); margin:-6px 0 -6px -8px; }
+  .plate-text{ font-family:'JetBrains Mono'; font-weight:700; font-size:13px; color:var(--blue-dark); }
+  .car-price{ font-family:'JetBrains Mono'; font-weight:700; font-size:17px; margin-top:2px; }
+  .car-price span{ font-size:11px; color:var(--steel); font-weight:500; }
+
+  /* SERVIZI */
+  .servizi-section{ background:var(--off-white); }
+  .servizi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  @media(max-width:780px){ .servizi-grid{ grid-template-columns:1fr; } }
+  .servizio{ background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); padding:34px 28px; }
+  .servizio .num{ font-family:'JetBrains Mono'; color:var(--blue); font-size:12px; margin-bottom:14px; display:block; }
+  .servizio h3{ font-size:19px; font-weight:600; margin-bottom:10px; text-transform:none; letter-spacing:0; }
+  .servizio p{ color:var(--steel); font-size:14px; line-height:1.6; }
+
+  /* CONTATTI */
+  .contatti-inner{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:30px; }
+  .contatti-info p{ color:var(--steel); margin-top:8px; font-size:15px; line-height:1.9; }
+  .contatti-info h2{ margin-bottom:6px; }
+  .contatti-ctas{ display:flex; gap:12px; flex-wrap:wrap; }
+
+  footer{ background:var(--off-white); border-top:1px solid var(--border); padding:26px 20px; }
+  .footer-inner{ max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:var(--steel); font-size:12px; }
+  .footer-inner a{ color:var(--steel); }
+
+  /* MODAL */
+  .modal-overlay{ position:fixed; inset:0; background:rgba(11,46,102,0.35); z-index:500; display:none; align-items:center; justify-content:center; padding:20px; }
+  .modal-overlay.open{ display:flex; }
+  .modal{ background:#fff; border-radius:var(--radius-lg); max-width:640px; width:100%; max-height:90vh; overflow-y:auto; border:1px solid var(--border); }
+  .modal-gallery{ display:flex; gap:8px; overflow-x:auto; padding:10px; scroll-snap-type:x mandatory; }
+  .modal-gallery img{ height:240px; border-radius:12px; scroll-snap-align:center; flex-shrink:0; }
+  .modal-photo-ph{ height:240px; margin:10px; border-radius:14px; background:var(--blue-light); display:flex; align-items:center; justify-content:center; }
+  .modal-photo-ph svg{ width:110px; opacity:.85; }
+  .modal-body{ padding:8px 26px 26px; position:relative; }
+  .modal-close{ position:absolute; top:-44px; right:14px; background:rgba(255,255,255,0.85); width:32px; height:32px; border-radius:50%; font-size:18px; display:flex; align-items:center; justify-content:center; }
+  .modal-body h3{ font-size:24px; font-weight:600; text-transform:none; letter-spacing:0; }
+  .modal-specs{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0; }
+  .spec-item{ border:1px solid var(--border); border-radius:var(--radius); padding:10px 12px; background:var(--off-white); }
+  .spec-label{ font-family:'JetBrains Mono'; font-size:10px; color:#9CA3AF; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:4px; }
+  .spec-item .val{ font-family:'JetBrains Mono'; font-weight:700; font-size:14px; }
+  .modal-desc{ font-size:14px; line-height:1.6; color:var(--ink); }
+  .modal-ctas{ display:flex; gap:10px; margin-top:20px; flex-wrap:wrap; }
+
+  .state-msg{ text-align:center; color:var(--steel); padding:30px; grid-column:1/-1; font-size:14px; }
+  .spinner{ display:inline-block; width:22px; height:22px; border:2px solid rgba(20,80,214,.25); border-top-color:var(--blue); border-radius:50%; animation:spin .6s linear infinite; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  @media (prefers-color-scheme: dark){
+    body{ background:#fff !important; color:#14181F !important; }
+    .hero, .servizi-section{ background:#F5F7FB !important; }
+    .navbar{ background:rgba(255,255,255,0.92) !important; }
+    section{ background:#fff; }
+    .car-card, .servizio, .modal, .spec-item{ background:#fff !important; }
+    .spec-item, .servizio{ background:#F5F7FB !important; }
+    .car-title,.hero h1,.section-head h2,.contatti-info h2,.modal-body h3,.logo span,.car-price{ color:#14181F !important; }
+    .car-sub,.hero p,.contatti-info p,.servizio p,.footer-inner{ color:#6B7280 !important; }
+    .mobile-menu{ background:#fff !important; } .mobile-menu a{ color:#14181F !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="logo"><span class="dot"></span><span>GLOBAL DRIVE</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="catalogo.html">Catalogo</a></li>
+      <li><a href="#servizi">Servizi</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+    <button class="hamburger" onclick="document.getElementById('mm').classList.add('open')"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mm">
+  <div class="mobile-menu-top"><button onclick="document.getElementById('mm').classList.remove('open')">&times;</button></div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="catalogo.html">Catalogo</a></li>
+    <li><a href="#servizi" onclick="document.getElementById('mm').classList.remove('open')">Servizi</a></li>
+    <li><a href="#contatti" onclick="document.getElementById('mm').classList.remove('open')">Contatti</a></li>
+  </ul>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Porto Torres · Sardegna</div>
+    <h1>Auto selezionate,<br><span class="accent">controllate</span> e pronte.</h1>
+    <p>Vendita di auto usate garantite, finanziamento su misura e permuta valutata sul momento. Niente sorprese, solo la macchina giusta.</p>
+    <div class="hero-ctas">
+      <a href="catalogo.html" class="btn btn-primary">Vedi il catalogo</a>
+      <a href="#contatti" class="btn btn-outline">Contattaci</a>
+    </div>
+  </div>
+</header>
+
+<section id="evidenza">
+  <div class="section-inner">
+    <div class="section-head">
+      <div><div class="eyebrow">In evidenza</div><h2>Le auto del momento</h2></div>
+      <a href="catalogo.html" class="btn btn-outline">Tutte le auto</a>
+    </div>
+    <div class="grid" id="featured-grid"><div class="state-msg"><span class="spinner"></span></div></div>
+  </div>
+</section>
+
+<section class="servizi-section" id="servizi">
+  <div class="section-inner">
+    <div class="section-head"><div><div class="eyebrow">Servizi</div><h2>Come lavoriamo</h2></div></div>
+    <div class="servizi-grid">
+      <div class="servizio"><span class="num">01</span><h3>Finanziamento</h3><p>Rate su misura studiate con i nostri partner finanziari, risposta in giornata.</p></div>
+      <div class="servizio"><span class="num">02</span><h3>Permuta</h3><p>Valutiamo la tua auto attuale sul posto e la scontiamo dal prezzo della nuova.</p></div>
+      <div class="servizio"><span class="num">03</span><h3>Garanzia</h3><p>Ogni auto passa un controllo meccanico completo prima di entrare in catalogo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contatti">
+  <div class="section-inner contatti-inner">
+    <div class="contatti-info">
+      <div class="eyebrow">Contatti</div>
+      <h2>Parla con noi</h2>
+      <p>
+        <a href="tel:+393421420499" style="color:var(--ink);font-weight:600;">342 142 0499</a><br>
+        <a href="mailto:globaldrivesrls@gmail.com">globaldrivesrls@gmail.com</a>
+      </p>
+    </div>
+    <div class="contatti-ctas">
+      <a href="https://wa.me/393421420499" class="btn btn-whatsapp">WhatsApp</a>
+      <a href="mailto:globaldrivesrls@gmail.com" class="btn btn-primary">Email</a>
+      <a href="https://www.instagram.com/globaldrivesrls/" target="_blank" rel="noopener" class="btn btn-outline">Instagram</a>
+      <a href="https://www.facebook.com/p/Global-Drive-Srls-61574177134812/" target="_blank" rel="noopener" class="btn btn-outline">Facebook</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 Global Drive Srls — Porto Torres, Sardegna</span>
+    <span style="display:flex; gap:16px;">
+      <a href="https://www.instagram.com/globaldrivesrls/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/p/Global-Drive-Srls-61574177134812/" target="_blank" rel="noopener">Facebook</a>
+      <a href="tel:+393421420499">342 142 0499</a>
+    </span>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) closeModal()">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const SUPABASE_URL='https://ogzsemevznksaaufcitf.supabase.co';
+const SUPABASE_KEY='sb_publishable_rDPMKNwsMRZdPryyJNMW4Q_Z6cAyr-N';
+const BUCKET='veicoli-foto';
+const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const carIcon=`<svg class="ph" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 40 L10 26 Q12 22 18 22 H46 Q52 22 54 26 L58 40 V46 Q58 49 55 49 H51 Q48 49 48 46 V44 H16 V46 Q16 49 13 49 H9 Q6 49 6 46 Z" stroke="#1450D6" stroke-width="2.2" fill="none"/><circle cx="18" cy="48" r="5" stroke="#1450D6" stroke-width="2.2"/><circle cx="46" cy="48" r="5" stroke="#1450D6" stroke-width="2.2"/><path d="M14 22 L18 14 H42 L48 22" stroke="#1450D6" stroke-width="2.2"/></svg>`;
+const pub = p => sb.storage.from(BUCKET).getPublicUrl(p).data.publicUrl;
+const esc = s => (s||'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const fmtPrice = n => n!=null ? '€ '+Number(n).toLocaleString('it-IT') : 'su richiesta';
+let CARS=[];
+
+function cardHTML(c){
+  const thumb = c.copertina ? `<img src="${pub(c.copertina)}" alt="${esc(c.marca)} ${esc(c.modello)}">` : carIcon;
+  const km = c.km!=null ? (c.km/1000).toFixed(0)+'K KM' : '—';
+  return `<div class="car-card" data-id="${c.id}">
+    <div class="car-thumb">${thumb}</div>
+    <div class="car-body">
+      <div class="car-title">${esc(c.marca)} ${esc(c.modello)}</div>
+      <div class="car-sub">${c.alimentazione||'—'} · ${c.cambio||'—'}</div>
+      <div class="plate"><span class="plate-strip"></span><span class="plate-text">${c.anno||'—'} · ${km}</span></div>
+      <div class="car-price">${fmtPrice(c.prezzo)} <span>+ IVA</span></div>
+    </div>
+  </div>`;
+}
+
+async function loadFeatured(){
+  // prima le auto in evidenza; se non ce ne sono, mostra le ultime disponibili
+  let { data } = await sb.from('veicoli').select('*').eq('in_evidenza',true).eq('stato','disponibile').order('created_at',{ascending:false}).limit(3);
+  if(!data || !data.length){
+    const r = await sb.from('veicoli').select('*').eq('stato','disponibile').order('created_at',{ascending:false}).limit(3);
+    data = r.data || [];
+  }
+  CARS = data;
+  const grid=document.getElementById('featured-grid');
+  if(!data.length){ grid.innerHTML='<div class="state-msg">Nessuna auto disponibile al momento. Contattaci per gli arrivi in arrivo!</div>'; return; }
+  grid.innerHTML = data.map(cardHTML).join('');
+  grid.querySelectorAll('.car-card').forEach(el=>el.addEventListener('click',()=>openModal(el.dataset.id)));
+}
+
+function openModal(id){
+  const c = CARS.find(x=>x.id===id); if(!c) return;
+  const imgs = (c.immagini||[]);
+  const gallery = imgs.length
+    ? `<div class="modal-gallery">${imgs.map(p=>`<img src="${pub(p)}" alt="">`).join('')}</div>`
+    : `<div class="modal-photo-ph">${carIcon}</div>`;
+  document.getElementById('modalContent').innerHTML = `
+    ${gallery}
+    <div class="modal-body">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <h3>${esc(c.marca)} ${esc(c.modello)}</h3>
+      <div class="modal-specs">
+        <div class="spec-item"><span class="spec-label">Anno</span><span class="val">${c.anno||'—'}</span></div>
+        <div class="spec-item"><span class="spec-label">Km</span><span class="val">${c.km!=null?Number(c.km).toLocaleString('it-IT'):'—'}</span></div>
+        <div class="spec-item"><span class="spec-label">Alimentazione</span><span class="val">${c.alimentazione||'—'}</span></div>
+        <div class="spec-item"><span class="spec-label">Cambio</span><span class="val">${c.cambio||'—'}</span></div>
+        <div class="spec-item" style="grid-column:1/-1"><span class="spec-label">Prezzo</span><span class="val">${fmtPrice(c.prezzo)} + IVA</span></div>
+      </div>
+      ${c.descrizione?`<div><span class="spec-label">Descrizione</span><p class="modal-desc" style="margin-top:6px;">${esc(c.descrizione)}</p></div>`:''}
+      <div class="modal-ctas">
+        <a href="https://wa.me/393421420499?text=${encodeURIComponent('Ciao, sono interessato a '+c.marca+' '+c.modello)}" class="btn btn-whatsapp">Chiedi su WhatsApp</a>
+        <a href="mailto:globaldrivesrls@gmail.com?subject=${encodeURIComponent('Info '+c.marca+' '+c.modello)}" class="btn btn-primary">Scrivi per info</a>
+      </div>
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+window.closeModal = ()=> document.getElementById('modalOverlay').classList.remove('open');
+
+loadFeatured();
+</script>
+</body>
+</html>
