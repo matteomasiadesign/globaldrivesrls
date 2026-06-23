@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light only">
 <title>Global Drive — Catalogo auto</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -23,8 +25,8 @@
 
   .navbar{ position:sticky; top:0; z-index:200; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
   .navbar-inner{ max-width:1200px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; }
-  .logo{ display:flex; align-items:center; gap:8px; }
-  .logo .dot{ width:9px; height:9px; background:var(--blue); border-radius:50%; }
+  .logo{ display:flex; align-items:center; gap:10px; }
+  .logo img{ height:36px; width:auto; display:block; }
   .logo span{ font-family:'Oswald'; font-size:18px; font-weight:600; letter-spacing:0.04em; }
   .nav-links{ display:flex; gap:32px; list-style:none; }
   .nav-links a{ color:var(--steel); font-size:13px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding-bottom:4px; border-bottom:2px solid transparent; transition:all .2s; }
@@ -136,10 +138,11 @@
 
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="index.html" class="logo"><span class="dot"></span><span>GLOBAL DRIVE</span></a>
+    <a href="index.html" class="logo"><img src="logo.webp" alt="Global Drive"><span>GLOBAL DRIVE</span></a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="catalogo.html" class="active">Catalogo</a></li>
+      <li><a href="index.html#chisiamo">Chi siamo</a></li>
       <li><a href="index.html#servizi">Servizi</a></li>
       <li><a href="index.html#contatti">Contatti</a></li>
     </ul>
@@ -151,6 +154,7 @@
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="catalogo.html">Catalogo</a></li>
+    <li><a href="index.html#chisiamo">Chi siamo</a></li>
     <li><a href="index.html#servizi">Servizi</a></li>
     <li><a href="index.html#contatti">Contatti</a></li>
   </ul>
