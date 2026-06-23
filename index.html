@@ -108,11 +108,13 @@
   @media(max-width:780px){ .contatti-grid{ grid-template-columns:1fr; gap:32px; } }
   .contatti-info h2{ margin-bottom:14px; }
   .contatti-info .lead{ color:var(--steel); font-size:15px; line-height:1.7; margin-bottom:22px; max-width:440px; }
-  .contatti-details{ display:flex; flex-direction:column; gap:10px; margin-bottom:22px; }
-  .contatti-details .row{ font-size:15px; color:var(--ink); }
+  .contatti-details{ display:flex; flex-direction:column; gap:12px; margin-bottom:22px; }
+  .contatti-details .row{ display:flex; align-items:center; gap:10px; font-size:15px; color:var(--ink); }
   .contatti-details .row a{ color:var(--ink); font-weight:600; }
   .contatti-details .row a:hover{ color:var(--blue); }
-  .contatti-details .hours{ color:var(--steel); font-size:14px; line-height:1.7; }
+  .contatti-details .hours{ display:flex; align-items:flex-start; gap:10px; color:var(--steel); font-size:14px; line-height:1.7; }
+  .contatti-details svg{ width:18px; height:18px; flex-shrink:0; color:var(--blue); }
+  .contatti-details .hours svg{ margin-top:3px; }
   .contatti-ctas{ display:flex; gap:12px; flex-wrap:wrap; }
   .contact-form{ background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); padding:28px; display:flex; flex-direction:column; gap:14px; }
   .contact-form .field{ display:flex; flex-direction:column; gap:6px; }
@@ -283,9 +285,18 @@
         <h2>Contattaci</h2>
         <p class="lead">Hai bisogno di informazioni o stai cercando la tua prossima auto? Il team di Global Drive Srls è a tua disposizione per offrirti consulenza e accompagnarti nella scelta della soluzione più adatta alle tue esigenze.</p>
         <div class="contatti-details">
-          <div class="row">📞 Telefono: <a href="tel:+393421420499">+39 342 142 0499</a></div>
-          <div class="row">✉️ Email: <a href="mailto:globaldrivesrls@gmail.com">globaldrivesrls@gmail.com</a></div>
-          <div class="hours">🕒 Orari di contatto<br>09:30 – 13:00 · 15:30 – 19:30<br>Dal lunedì al sabato</div>
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Telefono: <a href="tel:+393421420499">+39 342 142 0499</a></span>
+          </div>
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <span>Email: <a href="mailto:globaldrivesrls@gmail.com">globaldrivesrls@gmail.com</a></span>
+          </div>
+          <div class="hours">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span>Orari di contatto<br>09:30 – 13:00 · 15:30 – 19:30<br>Dal lunedì al sabato</span>
+          </div>
         </div>
         <div class="contatti-ctas">
           <a href="https://wa.me/393421420499" class="btn btn-whatsapp">WhatsApp</a>
