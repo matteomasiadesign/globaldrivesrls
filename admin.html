@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light only">
 <title>Global Drive — Gestionale</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -35,8 +37,8 @@
   /* ---------- LOGIN ---------- */
   #loginScreen{ min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; }
   .login-card{ background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); padding:36px 30px; width:100%; max-width:380px; box-shadow:0 16px 40px rgba(20,24,31,0.06); }
-  .login-logo{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
-  .login-logo .dot{ width:9px; height:9px; background:var(--blue); border-radius:50%; }
+  .login-logo{ display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+  .login-logo img{ height:32px; width:auto; display:block; }
   .login-logo span{ font-family:'Oswald'; font-size:18px; font-weight:600; letter-spacing:0.04em; }
   .login-sub{ color:var(--steel); font-size:13px; margin-bottom:24px; }
   .field{ margin-bottom:16px; }
@@ -130,7 +132,7 @@
 <!-- ================= LOGIN ================= -->
 <div id="loginScreen">
   <div class="login-card">
-    <div class="login-logo"><span class="dot"></span><span>GLOBAL DRIVE</span></div>
+    <div class="login-logo"><img src="logo.webp" alt="Global Drive"><span>GLOBAL DRIVE</span></div>
     <div class="login-sub">Gestionale annunci — accesso riservato</div>
     <div class="field">
       <label>Email</label>
@@ -149,7 +151,7 @@
 <div id="app">
   <div class="topbar">
     <div class="topbar-inner">
-      <div class="login-logo"><span class="dot"></span><span>GLOBAL DRIVE</span></div>
+      <div class="login-logo"><img src="logo.webp" alt="Global Drive"><span>GLOBAL DRIVE</span></div>
       <div style="display:flex; align-items:center; gap:14px;">
         <span class="topbar-user" id="userEmail"></span>
         <button class="btn btn-ghost btn-sm" id="logoutBtn">Esci</button>
