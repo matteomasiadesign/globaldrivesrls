@@ -195,6 +195,7 @@
           <select id="fStato"><option>disponibile</option><option>riservato</option><option>venduto</option></select>
         </div>
         <div class="field full"><label>Descrizione</label><textarea id="fDescrizione" placeholder="Allestimento, optional, condizioni, tagliandi..."></textarea></div>
+        <div class="field full"><label>Link Instagram (post o reel)</label><input id="fInstagram" type="url" placeholder="https://www.instagram.com/p/..."></div>
         <div class="full switch-row">
           <label class="switch"><input type="checkbox" id="fEvidenza"><span class="slider"></span></label>
           <label for="fEvidenza">Metti in evidenza (appare in home)</label>
@@ -358,6 +359,7 @@ function openForm(car){
   $('fCambio').value = car?.cambio || '';
   $('fStato').value = car?.stato || 'disponibile';
   $('fDescrizione').value = car?.descrizione || '';
+  $('fInstagram').value = car?.instagram_url || '';
   $('fEvidenza').checked = !!car?.in_evidenza;
   $('compressNote').textContent='';
   if(car && car.immagini){
@@ -444,6 +446,7 @@ async function saveCar(){
     cambio: $('fCambio').value || null,
     stato: $('fStato').value,
     descrizione: $('fDescrizione').value.trim() || null,
+    instagram_url: $('fInstagram').value.trim() || null,
     in_evidenza: $('fEvidenza').checked
   };
 
