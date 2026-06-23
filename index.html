@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light only">
 <title>Global Drive — Auto selezionate a Porto Torres</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -24,8 +26,8 @@
   /* NAVBAR */
   .navbar{ position:sticky; top:0; z-index:200; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
   .navbar-inner{ max-width:1200px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; }
-  .logo{ display:flex; align-items:center; gap:8px; }
-  .logo .dot{ width:9px; height:9px; background:var(--blue); border-radius:50%; }
+  .logo{ display:flex; align-items:center; gap:10px; }
+  .logo img{ height:36px; width:auto; display:block; }
   .logo span{ font-family:'Oswald'; font-size:18px; font-weight:600; letter-spacing:0.04em; }
   .nav-links{ display:flex; gap:32px; list-style:none; }
   .nav-links a{ color:var(--steel); font-size:13px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding-bottom:4px; border-bottom:2px solid transparent; transition:all .2s; }
@@ -42,14 +44,15 @@
   @media(max-width:880px){ .nav-links{ display:none; } .hamburger{ display:flex; } }
 
   /* HERO */
-  .hero{ background:var(--off-white); position:relative; overflow:hidden; padding:90px 20px 100px; }
-  .hero::before{ content:"GD"; position:absolute; right:0; top:50%; transform:translateY(-50%); font-family:'Oswald'; font-weight:700; font-size:280px; color:rgba(20,80,214,0.05); pointer-events:none; line-height:1; }
+  .hero{ background:linear-gradient(rgba(8,24,52,0.66),rgba(8,24,52,0.66)), url('header.webp') center/cover no-repeat #0B2E66; position:relative; overflow:hidden; padding:120px 20px 130px; }
   .hero-inner{ max-width:1200px; margin:0 auto; position:relative; z-index:2; }
   .eyebrow{ font-family:'JetBrains Mono'; font-size:12px; color:var(--blue); letter-spacing:0.12em; text-transform:uppercase; display:flex; align-items:center; gap:8px; margin-bottom:18px; }
   .eyebrow::before{ content:""; width:24px; height:1px; background:var(--blue); }
-  .hero h1{ font-size:clamp(36px,6vw,64px); line-height:1.05; max-width:680px; font-weight:700; }
-  .hero h1 .accent{ color:var(--blue); }
-  .hero p{ color:var(--steel); max-width:480px; margin-top:20px; font-size:16px; line-height:1.6; }
+  .hero .eyebrow{ color:#fff; }
+  .hero .eyebrow::before{ background:#fff; }
+  .hero h1{ font-size:clamp(36px,6vw,64px); line-height:1.05; max-width:680px; font-weight:700; color:#fff; }
+  .hero h1 .accent{ color:#8FB4FF; }
+  .hero p{ color:rgba(255,255,255,0.88); max-width:480px; margin-top:20px; font-size:16px; line-height:1.6; }
   .hero-ctas{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
   .btn{ padding:14px 26px; border-radius:var(--radius-pill); font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; display:inline-flex; align-items:center; gap:8px; transition:all .2s; }
   .btn-primary{ background:var(--blue); color:#fff; } .btn-primary:hover{ background:var(--blue-dark); }
@@ -87,12 +90,37 @@
   .servizio .num{ font-family:'JetBrains Mono'; color:var(--blue); font-size:12px; margin-bottom:14px; display:block; }
   .servizio h3{ font-size:19px; font-weight:600; margin-bottom:10px; text-transform:none; letter-spacing:0; }
   .servizio p{ color:var(--steel); font-size:14px; line-height:1.6; }
+  .servizio .lead{ margin-bottom:16px; }
+  .servizio .offer-label{ display:block; font-weight:600; color:var(--ink); font-size:13px; margin-bottom:10px; }
+  .servizio ul{ list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .servizio ul li{ position:relative; padding-left:20px; color:var(--steel); font-size:13px; line-height:1.5; }
+  .servizio ul li::before{ content:""; position:absolute; left:0; top:7px; width:6px; height:6px; border-radius:50%; background:var(--blue); }
+
+  /* CHI SIAMO */
+  .chisiamo-grid{ display:grid; grid-template-columns:0.8fr 1.2fr; gap:48px; align-items:start; }
+  @media(max-width:780px){ .chisiamo-grid{ grid-template-columns:1fr; gap:24px; } }
+  .chisiamo-head h2{ font-size:clamp(26px,4vw,36px); font-weight:600; }
+  .chisiamo-text p{ color:var(--steel); font-size:15px; line-height:1.8; margin-bottom:16px; }
+  .chisiamo-text p:last-child{ margin-bottom:0; }
 
   /* CONTATTI */
-  .contatti-inner{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:30px; }
-  .contatti-info p{ color:var(--steel); margin-top:8px; font-size:15px; line-height:1.9; }
-  .contatti-info h2{ margin-bottom:6px; }
+  .contatti-grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+  @media(max-width:780px){ .contatti-grid{ grid-template-columns:1fr; gap:32px; } }
+  .contatti-info h2{ margin-bottom:14px; }
+  .contatti-info .lead{ color:var(--steel); font-size:15px; line-height:1.7; margin-bottom:22px; max-width:440px; }
+  .contatti-details{ display:flex; flex-direction:column; gap:10px; margin-bottom:22px; }
+  .contatti-details .row{ font-size:15px; color:var(--ink); }
+  .contatti-details .row a{ color:var(--ink); font-weight:600; }
+  .contatti-details .row a:hover{ color:var(--blue); }
+  .contatti-details .hours{ color:var(--steel); font-size:14px; line-height:1.7; }
   .contatti-ctas{ display:flex; gap:12px; flex-wrap:wrap; }
+  .contact-form{ background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg); padding:28px; display:flex; flex-direction:column; gap:14px; }
+  .contact-form .field{ display:flex; flex-direction:column; gap:6px; }
+  .contact-form label{ font-size:12px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--steel); }
+  .contact-form input, .contact-form textarea{ width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:var(--radius); font-family:inherit; font-size:14px; background:#fff; color:var(--ink); }
+  .contact-form textarea{ min-height:120px; resize:vertical; }
+  .contact-form input:focus, .contact-form textarea:focus{ outline:none; border-color:var(--blue); }
+  .contact-form .btn{ justify-content:center; margin-top:4px; border:none; }
 
   footer{ background:var(--off-white); border-top:1px solid var(--border); padding:26px 20px; }
   .footer-inner{ max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:var(--steel); font-size:12px; }
@@ -122,13 +150,13 @@
 
   @media (prefers-color-scheme: dark){
     body{ background:#fff !important; color:#14181F !important; }
-    .hero, .servizi-section{ background:#F5F7FB !important; }
+    .servizi-section{ background:#F5F7FB !important; }
     .navbar{ background:rgba(255,255,255,0.92) !important; }
     section{ background:#fff; }
     .car-card, .servizio, .modal, .spec-item{ background:#fff !important; }
     .spec-item, .servizio{ background:#F5F7FB !important; }
-    .car-title,.hero h1,.section-head h2,.contatti-info h2,.modal-body h3,.logo span,.car-price{ color:#14181F !important; }
-    .car-sub,.hero p,.contatti-info p,.servizio p,.footer-inner{ color:#6B7280 !important; }
+    .car-title,.section-head h2,.contatti-info h2,.modal-body h3,.logo span,.car-price{ color:#14181F !important; }
+    .car-sub,.contatti-info .lead,.servizio p,.footer-inner{ color:#6B7280 !important; }
     .mobile-menu{ background:#fff !important; } .mobile-menu a{ color:#14181F !important; }
   }
 </style>
@@ -137,10 +165,11 @@
 
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="index.html" class="logo"><span class="dot"></span><span>GLOBAL DRIVE</span></a>
+    <a href="index.html" class="logo"><img src="logo.webp" alt="Global Drive"><span>GLOBAL DRIVE</span></a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="catalogo.html">Catalogo</a></li>
+      <li><a href="#chisiamo">Chi siamo</a></li>
       <li><a href="#servizi">Servizi</a></li>
       <li><a href="#contatti">Contatti</a></li>
     </ul>
@@ -152,6 +181,7 @@
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="catalogo.html">Catalogo</a></li>
+    <li><a href="#chisiamo" onclick="document.getElementById('mm').classList.remove('open')">Chi siamo</a></li>
     <li><a href="#servizi" onclick="document.getElementById('mm').classList.remove('open')">Servizi</a></li>
     <li><a href="#contatti" onclick="document.getElementById('mm').classList.remove('open')">Contatti</a></li>
   </ul>
@@ -179,32 +209,109 @@
   </div>
 </section>
 
+<section id="chisiamo">
+  <div class="section-inner chisiamo-grid">
+    <div class="chisiamo-head">
+      <div class="eyebrow">La nostra realtà</div>
+      <h2>Chi siamo</h2>
+    </div>
+    <div class="chisiamo-text">
+      <p>Global Drive Srls nasce con l'obiettivo di offrire ai propri clienti un modo semplice, trasparente e sicuro per acquistare e vendere automobili usate.</p>
+      <p>Mettiamo al centro la qualità dei veicoli, la correttezza nelle trattative e l'assistenza in ogni fase del processo, dalla ricerca dell'auto ideale fino alla consegna.</p>
+      <p>Grazie alla nostra esperienza nel settore automotive e a una rete di fornitori selezionati, siamo in grado di proporre veicoli accuratamente verificati e soluzioni personalizzate in base alle esigenze di ogni cliente.</p>
+      <p>La nostra missione è costruire un rapporto di fiducia duraturo, garantendo professionalità, trasparenza e attenzione ai dettagli.</p>
+    </div>
+  </div>
+</section>
+
 <section class="servizi-section" id="servizi">
   <div class="section-inner">
-    <div class="section-head"><div><div class="eyebrow">Servizi</div><h2>Come lavoriamo</h2></div></div>
+    <div class="section-head"><div><div class="eyebrow">Servizi</div><h2>I nostri servizi</h2></div></div>
     <div class="servizi-grid">
-      <div class="servizio"><span class="num">01</span><h3>Finanziamento</h3><p>Rate su misura studiate con i nostri partner finanziari, risposta in giornata.</p></div>
-      <div class="servizio"><span class="num">02</span><h3>Permuta</h3><p>Valutiamo la tua auto attuale sul posto e la scontiamo dal prezzo della nuova.</p></div>
-      <div class="servizio"><span class="num">03</span><h3>Garanzia</h3><p>Ogni auto passa un controllo meccanico completo prima di entrare in catalogo.</p></div>
+      <div class="servizio">
+        <span class="num">01</span>
+        <h3>Auto usate garantite</h3>
+        <p class="lead">Da Global Drive Srls selezioniamo con attenzione ogni veicolo per offrirti auto usate affidabili e pronte all'uso. Prima della consegna, ogni vettura viene sottoposta a controlli accurati e preparata per garantirti la massima tranquillità.</p>
+        <span class="offer-label">Cosa offriamo:</span>
+        <ul>
+          <li>Veicoli selezionati e controllati.</li>
+          <li>Garanzia legale di conformità prevista dalla normativa vigente.</li>
+          <li>Possibilità di sottoscrivere garanzie aggiuntive personalizzate, con diverse coperture e durate in base alle tue esigenze.</li>
+          <li>Possibilità di consegna del veicolo a domicilio.</li>
+          <li>Gestione delle pratiche amministrative e del passaggio di proprietà.</li>
+          <li>Assistenza pre e post vendita.</li>
+          <li>Supporto dedicato anche dopo l'acquisto.</li>
+        </ul>
+      </div>
+      <div class="servizio">
+        <span class="num">02</span>
+        <h3>Auto su commissione</h3>
+        <p class="lead">Cerchi un'auto specifica ma non vuoi perdere tempo tra annunci e trattative? Con il nostro servizio di ricerca su commissione ci occupiamo di trovare il veicolo più adatto alle tue esigenze, selezionando le migliori opportunità sul mercato e verificando attentamente provenienza, documentazione e condizioni generali.</p>
+        <span class="offer-label">Il servizio comprende:</span>
+        <ul>
+          <li>Ricerca personalizzata del veicolo.</li>
+          <li>Consulenza nella scelta del modello più adatto.</li>
+          <li>Verifica dello storico e della documentazione.</li>
+          <li>Gestione dell'acquisto e delle pratiche amministrative.</li>
+          <li>Preparazione e consegna del veicolo.</li>
+          <li>Possibilità di abbinare garanzie aggiuntive personalizzate.</li>
+        </ul>
+      </div>
+      <div class="servizio">
+        <span class="num">03</span>
+        <h3>Conto vendita</h3>
+        <p class="lead">Vuoi vendere la tua auto in modo semplice e sicuro, senza occuparti di annunci, appuntamenti e trattative? Affidandoti a Global Drive Srls, valorizziamo il tuo veicolo e gestiamo l'intero processo di vendita, garantendo professionalità e trasparenza sia al venditore che all'acquirente.</p>
+        <span class="offer-label">Ci occupiamo di:</span>
+        <ul>
+          <li>Valutazione del veicolo.</li>
+          <li>Realizzazione di foto professionali e pubblicazione degli annunci.</li>
+          <li>Gestione delle richieste e delle trattative con i potenziali acquirenti.</li>
+          <li>Assistenza completa nelle pratiche burocratiche.</li>
+          <li>Possibilità di offrire all'acquirente garanzie aggiuntive personalizzate.</li>
+          <li>Consegna del veicolo in totale sicurezza.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="contatti">
-  <div class="section-inner contatti-inner">
-    <div class="contatti-info">
-      <div class="eyebrow">Contatti</div>
-      <h2>Parla con noi</h2>
-      <p>
-        <a href="tel:+393421420499" style="color:var(--ink);font-weight:600;">342 142 0499</a><br>
-        <a href="mailto:globaldrivesrls@gmail.com">globaldrivesrls@gmail.com</a>
-      </p>
-    </div>
-    <div class="contatti-ctas">
-      <a href="https://wa.me/393421420499" class="btn btn-whatsapp">WhatsApp</a>
-      <a href="mailto:globaldrivesrls@gmail.com" class="btn btn-primary">Email</a>
-      <a href="https://www.instagram.com/globaldrivesrls/" target="_blank" rel="noopener" class="btn btn-outline">Instagram</a>
-      <a href="https://www.facebook.com/p/Global-Drive-Srls-61574177134812/" target="_blank" rel="noopener" class="btn btn-outline">Facebook</a>
+  <div class="section-inner">
+    <div class="contatti-grid">
+      <div class="contatti-info">
+        <div class="eyebrow">Contatti</div>
+        <h2>Contattaci</h2>
+        <p class="lead">Hai bisogno di informazioni o stai cercando la tua prossima auto? Il team di Global Drive Srls è a tua disposizione per offrirti consulenza e accompagnarti nella scelta della soluzione più adatta alle tue esigenze.</p>
+        <div class="contatti-details">
+          <div class="row">📞 Telefono: <a href="tel:+393421420499">+39 342 142 0499</a></div>
+          <div class="row">✉️ Email: <a href="mailto:globaldrivesrls@gmail.com">globaldrivesrls@gmail.com</a></div>
+          <div class="hours">🕒 Orari di contatto<br>09:30 – 13:00 · 15:30 – 19:30<br>Dal lunedì al sabato</div>
+        </div>
+        <div class="contatti-ctas">
+          <a href="https://wa.me/393421420499" class="btn btn-whatsapp">WhatsApp</a>
+          <a href="https://www.instagram.com/globaldrivesrls/" target="_blank" rel="noopener" class="btn btn-outline">Instagram</a>
+          <a href="https://www.facebook.com/p/Global-Drive-Srls-61574177134812/" target="_blank" rel="noopener" class="btn btn-outline">Facebook</a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="field">
+          <label for="cf-nome">Nome e cognome</label>
+          <input type="text" id="cf-nome" placeholder="Mario Rossi">
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" placeholder="nome@email.com">
+        </div>
+        <div class="field">
+          <label for="cf-tel">Telefono</label>
+          <input type="tel" id="cf-tel" placeholder="+39 ...">
+        </div>
+        <div class="field">
+          <label for="cf-msg">Messaggio</label>
+          <textarea id="cf-msg" placeholder="Scrivici cosa stai cercando..."></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="inviaRichiesta()">Invia richiesta</button>
+      </div>
     </div>
   </div>
 </section>
@@ -223,6 +330,17 @@
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) closeModal()">
   <div class="modal" id="modalContent"></div>
 </div>
+
+<script>
+function inviaRichiesta(){
+  const g = id => (document.getElementById(id).value || '').trim();
+  const nome = g('cf-nome'), email = g('cf-email'), tel = g('cf-tel'), msg = g('cf-msg');
+  if(!nome && !msg){ alert('Inserisci almeno il tuo nome e un messaggio.'); return; }
+  const subject = 'Richiesta informazioni — ' + (nome || 'Sito web');
+  const body = 'Nome: ' + nome + '\nEmail: ' + email + '\nTelefono: ' + tel + '\n\nMessaggio:\n' + msg;
+  window.location.href = 'mailto:globaldrivesrls@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
+</script>
 
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
