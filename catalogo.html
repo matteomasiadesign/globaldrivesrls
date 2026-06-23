@@ -191,7 +191,7 @@
 
 <footer>
   <div class="footer-inner">
-    <span>© 2026 Global Drive Srls — Porto Torres, Sardegna</span>
+    <span>© 2026 Global Drive Srls — Sassari, Sardegna · P.IVA 17467261008</span>
     <span style="display:flex; gap:16px;">
       <a href="https://www.instagram.com/globaldrivesrls/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.facebook.com/p/Global-Drive-Srls-61574177134812/" target="_blank" rel="noopener">Facebook</a>
@@ -226,7 +226,7 @@ function cardHTML(c){
       <div class="car-title">${esc(c.marca)} ${esc(c.modello)}</div>
       <div class="car-sub">${c.alimentazione||'—'} · ${c.cambio||'—'}</div>
       <div class="plate"><span class="plate-strip"></span><span class="plate-text">${c.anno||'—'} · ${km}</span></div>
-      <div class="car-price">${fmtPrice(c.prezzo)} <span>+ IVA</span></div>
+      <div class="car-price">${fmtPrice(c.prezzo)}</div>
     </div>
   </div>`;
 }
@@ -288,7 +288,7 @@ function openModal(id){
         <div class="spec-item"><span class="spec-label">Km</span><span class="val">${c.km!=null?Number(c.km).toLocaleString('it-IT'):'—'}</span></div>
         <div class="spec-item"><span class="spec-label">Alimentazione</span><span class="val">${c.alimentazione||'—'}</span></div>
         <div class="spec-item"><span class="spec-label">Cambio</span><span class="val">${c.cambio||'—'}</span></div>
-        <div class="spec-item" style="grid-column:1/-1"><span class="spec-label">Prezzo</span><span class="val">${fmtPrice(c.prezzo)} + IVA</span></div>
+        <div class="spec-item" style="grid-column:1/-1"><span class="spec-label">Prezzo</span><span class="val">${fmtPrice(c.prezzo)}</span></div>
       </div>
       ${c.descrizione?`<div><span class="spec-label">Descrizione</span><p class="modal-desc" style="margin-top:6px;">${esc(c.descrizione)}</p></div>`:''}
       <div class="modal-ctas">
