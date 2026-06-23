@@ -184,7 +184,7 @@
         <div class="field"><label>Modello *</label><input id="fModello" placeholder="Es. Golf 1.6 TDI"></div>
         <div class="field"><label>Anno</label><input id="fAnno" type="number" inputmode="numeric" placeholder="2020"></div>
         <div class="field"><label>Km</label><input id="fKm" type="number" inputmode="numeric" placeholder="45000"></div>
-        <div class="field"><label>Prezzo (€, + IVA)</label><input id="fPrezzo" type="number" inputmode="numeric" placeholder="14900"></div>
+        <div class="field"><label>Prezzo (€)</label><input id="fPrezzo" type="number" inputmode="numeric" placeholder="14900"></div>
         <div class="field"><label>Alimentazione</label>
           <select id="fAlim"><option value="">—</option><option>Benzina</option><option>Diesel</option><option>Ibrida</option><option>Elettrica</option><option>GPL</option><option>Metano</option></select>
         </div>
@@ -281,7 +281,7 @@ function renderCars(cars){
       <div class="car-meta">
         <div class="name">${esc(c.marca)} ${esc(c.modello)}</div>
         <div class="sub">${c.anno||'—'} · ${c.km!=null?Number(c.km).toLocaleString('it-IT')+' km':'—'} · ${c.alimentazione||'—'} · ${c.cambio||'—'}</div>
-        <div class="price">${fmtPrice(c.prezzo)} <span style="color:var(--steel);font-weight:500;font-size:11px;">+ IVA</span></div>
+        <div class="price">${fmtPrice(c.prezzo)}</div>
         <div class="badges">
           ${c.in_evidenza?'<span class="badge badge-evidenza">In evidenza</span>':''}
           <span class="badge badge-stato ${statoClass}">${c.stato}</span>
