@@ -46,6 +46,11 @@
   .btn-primary{ background:var(--blue); color:#fff; } .btn-primary:hover{ background:var(--blue-dark); }
   .btn-outline{ border:1.5px solid var(--border); color:var(--ink); background:#fff; } .btn-outline:hover{ border-color:var(--blue); color:var(--blue); }
   .btn-whatsapp{ background:#1f9e57; color:#fff; } .btn-whatsapp:hover{ background:#178047; }
+  .btn-instagram{ background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888); color:#fff; }
+  .btn-instagram:hover{ opacity:.92; }
+  .ig-badge{ position:absolute; top:14px; right:14px; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888); box-shadow:0 2px 8px rgba(0,0,0,.28); z-index:3; transition:transform .15s; }
+  .ig-badge:hover{ transform:scale(1.08); }
+  .ig-badge svg{ width:18px; height:18px; color:#fff; }
 
   .catalogo-hero{ background:var(--off-white); padding:36px 20px 0; }
   .eyebrow{ font-family:'JetBrains Mono'; font-size:12px; color:var(--blue); letter-spacing:0.12em; text-transform:uppercase; display:flex; align-items:center; gap:8px; margin-bottom:14px; }
@@ -212,6 +217,7 @@ const BUCKET='veicoli-foto';
 const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const carIcon=`<svg class="ph" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 40 L10 26 Q12 22 18 22 H46 Q52 22 54 26 L58 40 V46 Q58 49 55 49 H51 Q48 49 48 46 V44 H16 V46 Q16 49 13 49 H9 Q6 49 6 46 Z" stroke="#1450D6" stroke-width="2.2" fill="none"/><circle cx="18" cy="48" r="5" stroke="#1450D6" stroke-width="2.2"/><circle cx="46" cy="48" r="5" stroke="#1450D6" stroke-width="2.2"/><path d="M14 22 L18 14 H42 L48 22" stroke="#1450D6" stroke-width="2.2"/></svg>`;
+const igIcon=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>`;
 const pub = p => sb.storage.from(BUCKET).getPublicUrl(p).data.publicUrl;
 const esc = s => (s||'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 const fmtPrice = n => n!=null ? '€ '+Number(n).toLocaleString('it-IT') : 'su richiesta';
@@ -221,7 +227,7 @@ function cardHTML(c){
   const thumb = c.copertina ? `<img src="${pub(c.copertina)}" alt="${esc(c.marca)} ${esc(c.modello)}">` : carIcon;
   const km = c.km!=null ? (c.km/1000).toFixed(0)+'K KM' : '—';
   return `<div class="car-card" data-id="${c.id}">
-    <div class="car-thumb">${thumb}</div>
+    <div class="car-thumb">${thumb}${c.instagram_url?`<a href="${esc(c.instagram_url)}" target="_blank" rel="noopener" class="ig-badge" onclick="event.stopPropagation()" aria-label="Vedi su Instagram">${igIcon}</a>`:''}</div>
     <div class="car-body">
       <div class="car-title">${esc(c.marca)} ${esc(c.modello)}</div>
       <div class="car-sub">${c.alimentazione||'—'} · ${c.cambio||'—'}</div>
@@ -294,6 +300,7 @@ function openModal(id){
       <div class="modal-ctas">
         <a href="https://wa.me/393421420499?text=${encodeURIComponent('Ciao, sono interessato a '+c.marca+' '+c.modello)}" class="btn btn-whatsapp">Chiedi su WhatsApp</a>
         <a href="mailto:globaldrivesrls@gmail.com?subject=${encodeURIComponent('Info '+c.marca+' '+c.modello)}" class="btn btn-primary">Scrivi per info</a>
+        ${c.instagram_url?`<a href="${esc(c.instagram_url)}" target="_blank" rel="noopener" class="btn btn-instagram">Vedi su Instagram</a>`:''}
       </div>
     </div>`;
   document.getElementById('modalOverlay').classList.add('open');
